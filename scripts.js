@@ -54,11 +54,11 @@ function game() {
     }
     //compare wins and losses and return winner
     if (win > lose) {
-        console.log('You win!')
+        alert(`You win! You won ${win} rounds.` )
     } else if (lose > win) {
-        console.log('You lose!')
+       alert(`You lose! You lost ${rounds} rounds.`)
     } else {
-        console.log('You tie!')
+        alert('You tie!')
     }
 }
 
