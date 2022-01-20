@@ -15,23 +15,52 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+
     // Make player selection lowercase
     const playerSelectionLower = playerSelection.toLowerCase();
     // Evaluate player's selection and return winner or loser based of if the computer has the selection 
     //that will beat my hand
+
     if (playerSelectionLower === 'rock' && computerSelection === 'Paper') {
-        return console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+        return 'lose';
     } else if (playerSelectionLower === 'paper' && computerSelection === 'Scissors') {
-        return console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+        return 'lose';
     } else if (playerSelectionLower === 'scissors' && computerSelection === 'Rock') {
-        return console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
-    } else if (playerSelectionLower === computerSelection.toLowerCase()){
-        return console.log(`It's a tie!`);
+        return 'lose';
+    } else if (playerSelectionLower === computerSelection.toLowerCase()) {
+        return 'tie';
     }
-    return console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+    return 'win';
 
 }
 
-const playerSelection = 'Rock';
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    let i = 0;
+    let win = 0;
+    let lose = 0;
+    while (i < 5) {
+        const playerSelection = prompt('Enter Rock, Paper or Scissors: ');
+        const computerSelection = computerPlay();
+        alert(`Computer chose ${computerSelection}.`);
+        result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        // count wins and losses
+        if (result === 'win') {
+            win += 1;
+        } else if (result === 'lose') {
+            lose += 1;
+        } 
+        i++;
+    }
+    //compare wins and losses and return winner
+    if (win > lose) {
+        console.log('You win!')
+    } else if (lose > win) {
+        console.log('You lose!')
+    } else {
+        console.log('You tie!')
+    }
+}
+
+
+console.log(game());
