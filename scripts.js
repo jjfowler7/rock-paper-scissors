@@ -1,3 +1,6 @@
+let win = 0;
+let lose = 0;
+
 function computerPlay() {
     let randomNumber;
     randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -14,7 +17,10 @@ function computerPlay() {
 
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound() {
+
+    const playerSelection = prompt('Enter Rock, Paper or Scissors: ');
+    const computerSelection = computerPlay();
 
     // Make player selection lowercase
     const playerSelectionLower = playerSelection.toLowerCase();
@@ -22,19 +28,32 @@ function playRound(playerSelection, computerSelection) {
     //that will beat my hand
 
     if (playerSelectionLower === 'rock' && computerSelection === 'Paper') {
+        lose += 1;
         return 'lose';
     } else if (playerSelectionLower === 'paper' && computerSelection === 'Scissors') {
+        lose += 1;
         return 'lose';
     } else if (playerSelectionLower === 'scissors' && computerSelection === 'Rock') {
+        lose += 1;
         return 'lose';
     } else if (playerSelectionLower === computerSelection.toLowerCase()) {
         return 'tie';
     }
+    win += 1;
     return 'win';
 
 }
 
-function game() {
+    //compare wins and losses and return winner
+    if (win >= 5) {
+        alert(`You win!`)
+    } else if (lose >= 5) {
+       alert(`You lose!`)
+    } 
+ 
+//console.log(playRound());
+
+/* function(playRound() {
     let i = 0;
     let win = 0;
     let lose = 0;
@@ -60,7 +79,6 @@ function game() {
     } else {
         alert('You tie!')
     }
-}
-
-
-console.log(game());
+} */
+    
+   
