@@ -1,6 +1,22 @@
 let win = 0;
 let lose = 0;
 
+//Display results
+const container = document.querySelector('#results');
+const winTracker = document.createElement('div');
+winTracker.style.paddingTop = '20px';
+const loseTracker = document.createElement('div');
+loseTracker.style.paddingTop = '10px';
+
+winTracker.classList.add('winTracker');
+winTracker.textContent = `Won: ${win}`;
+
+loseTracker.classList.add('loseTracker');
+loseTracker.textContent = `Lost: ${lose}`
+
+container.append(winTracker, loseTracker);
+
+
 function computerPlay() {
     let randomNumber;
     randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -17,9 +33,9 @@ function computerPlay() {
 
 }
 
-function playRound() {
+function playRound(playerSelection) {
 
-    const playerSelection = prompt('Enter Rock, Paper or Scissors: ');
+    //const playerSelection = prompt('Enter Rock, Paper or Scissors: ');
     const computerSelection = computerPlay();
 
     // Make player selection lowercase
@@ -29,28 +45,39 @@ function playRound() {
 
     if (playerSelectionLower === 'rock' && computerSelection === 'Paper') {
         lose += 1;
-        return 'lose';
+        return loseTracker.textContent = `Lost: ${lose}`; 
     } else if (playerSelectionLower === 'paper' && computerSelection === 'Scissors') {
         lose += 1;
-        return 'lose';
+        return loseTracker.textContent = `Lost: ${lose}`; 
     } else if (playerSelectionLower === 'scissors' && computerSelection === 'Rock') {
         lose += 1;
-        return 'lose';
-    } else if (playerSelectionLower === computerSelection.toLowerCase()) {
-        return 'tie';
+        return loseTracker.textContent = `Lost: ${lose}`; 
+    } else if (playerSelectionLower === computerSelection.toLowerCase()) { 
+        return console.log('tie');
     }
-    win += 1;
-    return 'win';
+    win += 1; 
+    return winTracker.textContent = `Won: ${win}`; 
 
 }
 
-    //compare wins and losses and return winner
-    if (win >= 5) {
-        alert(`You win!`)
-    } else if (lose >= 5) {
-       alert(`You lose!`)
-    } 
- 
+// Add all buttons to a node lise
+const buttons = document.querySelectorAll('button');
+
+// iterate through each button using the for each method to add a click listener
+buttons.forEach((button) => {
+    button.addEventListener('click', () =>  {
+        playRound(button.id);
+        if (win === 5) {
+            alert(`You win. You've won ${win} rounds!`);
+        } else if (lose === 5) {
+           alert(`You lose! You've lost ${lose} rounds!`); 
+        } 
+    });
+}); 
+
+
+
+
 //console.log(playRound());
 
 /* function(playRound() {
